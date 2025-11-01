@@ -1,1 +1,1 @@
-from .spotify_service import SpotifyService
+from .spotify import SpotifyService

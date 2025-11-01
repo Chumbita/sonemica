@@ -35,4 +35,4 @@ async def test_endpoint(access_token: str, limit: int = 20):
     """
     Endpoint de prueba para verificar que el servicio de Spotify funciona correctamente.
     """
-    return spotify_service.get_tracks_with_features(access_token, limit=limit)
+    return spotify_service.get_recently_played(access_token, limit=limit)
