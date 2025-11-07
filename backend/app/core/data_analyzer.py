@@ -34,8 +34,7 @@ class DataAnalyzer:
         n_tracks = len(tracks_lyrics)
 
         for track in tracks_lyrics:
-            lyrics = track["Lyrics"]
-            distribution = lyrics_analyzer.analyze(lyric=lyrics)["distribution"]
+            distribution = lyrics_analyzer.analyze(track)["distribution"]
 
             for emotion, value in distribution.items():
                 if emotion not in emotions:
@@ -60,7 +59,7 @@ class DataAnalyzer:
     from app.core import DataFetcher
 
     data_fetcher = DataFetcher()
-    user_token = "BQBHJRls68SWjoVwe6EAlO-WzO7zKUH_FcLGZU14FA5mj3IDEdLy-N7YskF0LMKvVd1JToMxd9ZSW4b-z2krZoIL2RHNs2LsynR4Ke3HOzP0EbggrUxO2rOd2CPZ5YvPvJwxESRG8KtAB6TDXAjv13B_Iz0LrwgYOLtY4aR3eLHZlSZ8P-uxiKTBHE0N6LKA4KxXgBNzNq8VJwE2hTgxpjg3_7IpALT2gN67-8ht5Vv1Qtyrwz9NeKM_MYo7Cl4l"
+    user_token = "BQBTe76EZK7c4UhGimPqcegck1lzWWsc5ZXveNM3trdLqmPcBo_YnJ9foFz0c4mD0zn-Ido0GBy9Cgl1i_ERxhohD5kz87wmVSM6G3_gs4LZEnO5bDRlRq6m1i0OxX2RX4y9q8FM0JMOFoW_EfZQ5JF1_Bs7LVSDm1SkPI7x7WKu7xjxMijqVX3FaTYX6DqajTnCLL62eUllmepdIc0hngsyPce8PoigMfjLDkpO4xd70wmjeMLTmTynV8kejsdf"
     tracks = data_fetcher.fetch_recent_tracks(access_token=user_token)
     tracks_audio_features = data_fetcher.fetch_audio_features(tracks)
     tracks_lyrics = data_fetcher.fetch_lyrics(tracks)

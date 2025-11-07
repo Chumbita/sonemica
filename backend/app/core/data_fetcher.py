@@ -136,14 +136,14 @@ class DataFetcher:
 
 
 # Prueba unitaria
-""" if __name__ == "__main__":
+if __name__ == "__main__":
     data_fetcher = DataFetcher()
 
     tracks = data_fetcher.fetch_recent_tracks(
-        "BQCPL9va0jq1pLRjN1j4PYxYkGBz7dyCiQWqMsCwnuPqx25CQwhDK69RYmqObold7zLwUhQQ308DcgLEGEMmFmXXg30jCw2pblrMWfbtnXDUCiCIy9qwB6oKUcEayeFdIo_L3zZZ5LYUr2nnlkeEXi1KuhVbV_UE7JrmpsaMNoHEqmkJtzJB6yjQgqf77y6waWhKG-SBMgvMKG_8d9y5nUV5IiaxajGimiN0sek4xqhs3KxbUYbI0ejlUSlmPYEM"
+        "BQCniJSjgO7nhWk8nKA50_epqfCxyqdVKEzLoHKjoqlFm94-a9BVE6Mo5yKjrEgwOSl7D0IN0fJbinpLIIB78cyqwQXZWUzdkpiyLBJjlNDufcvUc_l8kepNl7Z03eYJ658rKxTMwTZ-oLOP1r_Q0l_F97EZL0OX_C5F_DysJ2A1QNRIqiVrSnACtncJQbPt6zTi8iULjc19GJpbW3raPiePoXxL0DOOzzHLN6O_jdHmU3J81WV4_rX0wPeKO-G6"
     )
 
     audio_features = data_fetcher.fetch_audio_features(tracks)
     lyrics = data_fetcher.fetch_lyrics(tracks)
     print(audio_features)
-    print(lyrics) """
+    #print(lyrics)

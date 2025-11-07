@@ -10,9 +10,9 @@ class TransformerAnalyzer:
         self.model = AutoModelForSequenceClassification.from_pretrained(self.model_name)
         self.labels = ["anger", "joy", "optimism", "sadness"]
 
-    def analyze(self, lyric: str) -> dict:
+    def analyze(self, song: dict[str: str]) -> dict:
         inputs = self.tokenizer(
-            lyric, return_tensors="pt", truncation=True, max_length=512
+            song.get("Lyrics"), return_tensors="pt", truncation=True, max_length=512
         )
         with torch.no_grad():
             logits = self.model(**inputs).logits
@@ -20,11 +20,12 @@ class TransformerAnalyzer:
         top_idx = torch.argmax(probs).item()
         return {
             "method": "transformer",
+            "title": song.get("Title"),
+            "artist": song.get("Artist"),
             "emotion": self.labels[top_idx],
             "confidence": float(probs[top_idx]),
             "distribution": {label: float(p) for label, p in zip(self.labels, probs)},
         }
-
 
 """
 Prueba unitaria de modelo de inferencia emocional
