@@ -1,0 +1,14 @@
+import '../styles/connect.css';
+
+const SPOTIFY_AUTH_URL =
+  'https://accounts.spotify.com/es/authorize?client_id=9fb6a73637f343218b39eb34a09660ca&response_type=code&redirect_uri=http://127.0.0.1:8000/api/auth/spotify/callback&scope=user-read-recently-played%20user-top-read&show_dialog=true';
+
+export default component ConnectSpotifyButton() {
+  function handleClick() {
+    window.location.href = SPOTIFY_AUTH_URL;
+  }
+
+  <button class="spotify-btn" onClick={handleClick}>
+    {'Conectar con Spotify'}
+  </button>
+}

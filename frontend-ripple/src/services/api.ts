@@ -1,5 +1,5 @@
 // src/services/api.ts
-const BASE = import.meta.env.VITE_API_BASE || "";
+/* const BASE = import.meta.env.VITE_API_BASE || "";
 
 export async function getAuthStatus(){
   try{
@@ -14,11 +14,11 @@ export async function getAuthStatus(){
 export function loginSpotify(){
   const redirect = encodeURIComponent(`${window.location.origin}/loading`);
   window.location.href = `${BASE}/api/auth/login?redirect=${redirect}`;
-}
+} */
 
 // PARA QUE PUEDAN INTEGRAR EL BACK
-/*
-const BASE = import.meta.env.VITE_API_BASE || ""; // o pegá acá la URL
+
+const BASE = import.meta.env.VITE_API_BASE || "";
 
 type JSONValue = any;
 
@@ -29,6 +29,11 @@ export async function apiGet<T = JSONValue>(path: string): Promise<T> {
   });
   if (!res.ok) throw new Error(await res.text().catch(() => "GET failed"));
   return res.json();
+}
+
+// Para obtener el Spotify OAuth
+export async function getSpotifyOAuthURL(){
+  return apiGet<string>("/api/auth/spotify")
 }
 
 export async function apiPost<T = JSONValue>(path: string, body?: unknown): Promise<T> {
@@ -45,4 +50,3 @@ export async function apiPost<T = JSONValue>(path: string, body?: unknown): Prom
 export function buildRedirect(to = "/loading") {
   return encodeURIComponent(`${window.location.origin}${to}`);
 }
-*/

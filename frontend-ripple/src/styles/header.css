@@ -1,0 +1,72 @@
+.header {
+	position: fixed; 
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px 32px; 
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	background: transparent; 
+	z-index: 1000;
+}
+
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	transition: opacity 0.2s ease;
+}
+
+.brand:hover {
+	opacity: 0.8;
+}
+
+.logo {
+	width: 64px;
+	height: 64px;
+	display: block;
+}
+
+
+.brand-name {
+	font-weight: 600;
+	font-size: 16px;
+	margin: 0;
+	color: #fff;
+	letter-spacing: 0.3px;
+}
+
+
+@media (max-width: 640px) {
+	.header {
+		padding: 16px 20px;
+	}
+	.logo {
+		width: 24px;
+		height: 24px;
+	}
+	.brand-name {
+		font-size: 15px;
+	}
+}
+
+
+.header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  padding: 14px clamp(14px, 3vw, 32px);
+  display: flex; align-items: center; justify-content: flex-start;
+  background: transparent;
+  z-index: 1000;
+}
+.brand{ display:flex; align-items:center; gap:10px; cursor:pointer; }
+.logo{ width: clamp(20px, 2.6vw, 28px); height: clamp(20px, 2.6vw, 28px); }
+.brand-name{ font-size: clamp(14px, 1.8vw, 16px); margin:0; }
+
+@media (max-width: 640px){
+  .header{ padding: 12px 16px; }
+}
+
+.page-with-fixed-header { padding-top: 64px; }

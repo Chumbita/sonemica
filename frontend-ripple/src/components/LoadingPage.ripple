@@ -1,7 +1,7 @@
 import '../styles/loading.css';
 import HeaderBar from '../components/HeaderBar.ripple';
 import { effect } from 'ripple';
-//import { useAnalysis } from '../hooks/useAnalysis';
+// import { useAnalysis } from '../hooks/useAnalysis';
 
 export default component LoadingPage() {
 //	const { status, start } = useAnalysis(); // start() dispara análisis en backend
