@@ -8,7 +8,7 @@ import re
 from difflib import SequenceMatcher
 
 
-class ValencearousalAnalyzer:
+class ValenceArousalAnalyzer:
     def __init__(
         self, weight_music_valence: float = 0.6, weight_lyrics_valence: float = 0.4
     ):
@@ -473,7 +473,7 @@ if __name__ == "__main__":
     from app.analyzers import TransformerAnalyzer
 
     data_fetcher = DataFetcher()
-    analyzer = ValencearousalAnalyzer()
+    analyzer = ValenceArousalAnalyzer()
     transformer = TransformerAnalyzer()
 
     token = "BQCHNwcA2WjaaTj0bU0G1Icz4BDSlXoDmCi0wApON_bDloxjZE-4BF3Um_hcIzHSsDTnSR41umS5x-mWQO_rSzErmSsvypyR3oJfS3s7VB4_BZHijrJ0o1nkIsmEHhC3aMm-URHX9cTPKCNxgYGAyYKJUIREy8VFc_bSInHSIbzIAIIHjzIOqOIGd9mnjD91GIocSJjP0_sPQI89HA_qU89OVmRiuyy4LlyRUefLvmNXdxuuDb77H5Ng"

@@ -149,53 +149,37 @@ def calcular_emociones_combinadas(features, lyrics_inference):
 
     return final_emotion
 
+# 5 Flujo completo
 
-# 5 Flujo completo 
-
-if __name__ == "__main__":
-
-# Analisis Datos
-    from app.core import DataFetcher
-    from app.core.data_analyzer import DataAnalyzer
-
-    data_fetcher = DataFetcher()
-    data_analyzer = DataAnalyzer()
-
-    user_token = "BQA9yXaB_jDrPicu4LEvZwOqugmxtCB_Hwq08gXOZYhyWpp4AzmusS_nAJXzKLpe45Yw54dUgJZ1ou8YOC38axs64PiAgPxV7udSu1Nuv7YJ0_pP67SyCVzptBsFW4R7jshxTRk4aXRxXoBh_5GNfub_JavszFGQs_VyOe8Fe0FGyRHtJSG-ZF9WxQpPokwRanIEKi2PBYqjfXdqNP4UWT9X8XpdDUjmCnrQAyms5c7tiS93BVy9d6mf"
-    tracks = data_fetcher.fetch_recent_tracks(access_token=user_token)
-    tracks_audio_features = data_fetcher.fetch_audio_features(tracks)
-    tracks_lyrics = data_fetcher.fetch_lyrics(tracks)
-
-    
-    avg_audio = data_analyzer.average_audio_features(tracks_audio_features)
-    avg_lyrics = data_analyzer.analyze_lyrics(tracks_lyrics)
-    print("✅ Se obtuvieron las caracteristicas de las canciones.")
-
-# Calcular emociones
-
+def graficar_paisaje_emocional(avg_audio, avg_lyrics):
     emotion_distribution = calcular_emociones_combinadas(avg_audio["average_audio_features"], avg_lyrics["average_lyrics_inference"])
     print("Distribución emocional:\n", emotion_distribution)
     
 # Genera el promp para la imagen
-
     prompt_base, prompt_interpretacion = generar_prompt_emocional(emotion_distribution)
-    print("🎨 Prompt generado para imagen:\n", prompt_base)
+    print("Prompt generado para imagen:\n", prompt_base)
 
-
+    url_publica = None
+    descripcion = None
+    
 # Genera la imágen y la describe
-
     try:
         image_path = generar_imagen(prompt_base)
-        print("✅ Imagen guardada como: ", image_path)
+        print("Imagen guardada como: ", image_path)
 
         print("📤 Subiendo imagen a imgbb...")
         url_publica = subir_imagen_a_imgbb(image_path)
-        print("✅ Imagen subida:", url_publica)
+        print("Imagen subida:", url_publica)
 
-        print("🧠 Enviando prompt e imágen al modelo...")
+        print("Enviando prompt e imágen al modelo...")
         descripcion = generar_descripcion_emocional(prompt_interpretacion, url_publica, client)
         print(descripcion)
     except Exception as e:
-      print("❌ Error:", e)
+      print("Error:", e)
+
+    return {
+        "url_publica": url_publica,
+        "descripcion": descripcion
+    }
 
 
