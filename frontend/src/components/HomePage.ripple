@@ -1,0 +1,26 @@
+import '../styles/home.css';
+import HeaderBar from '../components/HeaderBar.ripple';
+import Footer from '../components/Footer.ripple';
+import ConnectSpotifyButton from './ConnectSpotifyButton.ripple';
+//import { useAuth } from '../hooks/useAuth';
+
+export default component HomePage() {
+//  const { data } = useAuth(); // { connected, user? }
+	<div class="container">
+		<div class="page-bg" aria-hidden="true" />
+
+		<HeaderBar />
+
+		<section class="hero">
+			<h1 class="hero-title gradient-text">{'Descubrí tu identidad sonora'}</h1>
+			<p class="hero-desc">
+				{'Sonemica transforma tu música en arte dinámico. Conectá tu Spotify y descubrí cómo evoluciona tu energía sonora con el tiempo.'}
+			</p>
+			<div class="hero-actions">
+				<ConnectSpotifyButton onClick={() => window.location.href = '/loading'} />
+			</div>
+		</section>
+
+		<Footer />
+	</div>
+}

@@ -1,0 +1,82 @@
+import '../styles/results.css';
+import { track, effect } from 'ripple';
+import HeaderBar from '../components/HeaderBar.ripple';
+//import { useResults } from '../hooks/useResults';
+
+// Data mock: tienen que reemplazar por lo que venga del backend
+const slides = [
+  { title: 'Titulo', text: 'descripción' },
+  { title: 'Titulo', text: 'descripción' },
+  { title: 'Titulo',       text: 'descripción' },
+];
+
+export default component ResultsPage() {
+
+effect(() => {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+  const prefersReduced =
+    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+  const items = Array.from(
+    document.querySelectorAll(
+      '.slides .slide, .slides .slide-title, .slides .slide-text, .slides .slide-visual'
+    )
+  );
+  if (!items.length) return;
+
+
+  items.forEach((el) => el.classList.add('reveal'));
+
+  if (prefersReduced) {
+    items.forEach((el) => el.classList.add('in'));
+    return;
+  }
+
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const el = entry.target as HTMLElement;
+
+        if (entry.isIntersecting) {
+          el.classList.add('in');
+        } else {
+          el.classList.remove('in'); // se vuelve a ocultar al salir del viewport
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: '0px 0px -10% 0px',
+      threshold: 0.2, // empieza un poco antes del centro
+    }
+  );
+
+  items.forEach((el) => io.observe(el));
+
+  return () => io.disconnect();
+});
+
+
+  <div class="results-root">
+    <HeaderBar />
+
+
+    <main class="slides">
+      for (const s of slides) {
+        <section class="slide">
+          <article class="slide-container">
+            <h2 class="gradient-text slide-title">{s.title}</h2>
+            <p class="slide-text">{s.text}</p>
+
+            {/* Zona opcional para gráficos/imágenes de cada slide */}
+            <div class="slide-visual card">
+              <div class="placeholder">{'gráfico'}</div>
+            </div>
+          </article>
+        </section>
+      }
+    </main>
+  </div>
+}

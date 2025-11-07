@@ -1,0 +1,39 @@
+import { track, effect } from 'ripple';
+import '../styles/globals.css';
+
+import HomePage  from '../components/HomePage.ripple';
+import LoadingPage  from '../components/LoadingPage.ripple';
+import ResultsPage  from '../components/ResultsPage.ripple';
+
+export component App() {
+
+  let path = track(window.location.pathname || '/');
+
+
+  effect(() => {
+    const onPop = () => { @path = window.location.pathname || '/'; };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  });
+
+
+  function nav(to) {
+    if (to !== window.location.pathname) {
+      history.pushState({}, '', to);
+      @path = to;
+    }
+  }
+
+
+  <div>
+    if (@path === '/') {
+      <HomePage onStart={() => nav('/loading')} />
+    } else if (@path === '/loading') {
+      <LoadingPage onDone={() => nav('/results')} />
+    } else if (@path === '/results') {
+      <ResultsPage />
+    } else {
+      <HomePage onStart={() => nav('/loading')} />
+    }
+  </div>
+}

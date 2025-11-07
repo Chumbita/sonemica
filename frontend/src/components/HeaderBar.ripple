@@ -1,0 +1,15 @@
+import '../styles/header.css';
+import iconUrl from '../assets/icons/sonemica-logo.png';
+
+export default component HeaderBar() {
+	function goHome() {
+		window.location.href = '/'; // redirige a Home
+	}
+
+	<header class="header">
+		<div class="brand" onClick={goHome} style="cursor:pointer;">
+			<img src={iconUrl} alt="Sonemica logo" class="logo" />
+			<h1 class="brand-name">{'SONEMICA'}</h1>
+		</div>
+	</header>
+}

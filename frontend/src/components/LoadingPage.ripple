@@ -1,0 +1,38 @@
+import '../styles/loading.css';
+import HeaderBar from '../components/HeaderBar.ripple';
+import { effect } from 'ripple';
+//import { useAnalysis } from '../hooks/useAnalysis';
+
+export default component LoadingPage() {
+//	const { status, start } = useAnalysis(); // start() dispara análisis en backend
+	// Simula procesamiento y luego navega a resultados
+	effect(() => {
+		const t = setTimeout(() => window.location.href = '/results', 2400);
+		return () => clearTimeout(t);
+	});
+
+	<div class="loading-screen">
+		<HeaderBar />
+
+		<main class="loading-stage" role="status" aria-live="polite">
+			<h1 class="loading-title">{'Analizando tu energía sonora…'}</h1>
+			<p class="loading-sub">
+				{'Tomamos tus últimas escuchas y medimos patrones de ritmo, energía y variabilidad.'}
+			</p>
+
+			<div class="eq">
+				<span />
+				<span />
+				<span />
+				<span />
+				<span />
+				<span />
+				<span />
+			</div>
+
+			<div class="dot" aria-hidden="true" />
+
+			<p class="loading-hint">{'Esto puede tardar unos segundos…'}</p>
+		</main>
+	</div>
+}

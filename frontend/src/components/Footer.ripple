@@ -1,0 +1,5 @@
+export default component Footer() {
+  <footer class="app-footer">
+    <p>{'© 2025 Sonemica'}</p>
+  </footer>
+}
