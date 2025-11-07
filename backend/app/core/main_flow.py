@@ -3,6 +3,7 @@ from app.core import DataAnalyzer
 from app.analyzers import ValenceArousalAnalyzer
 from app.analyzers import TransformerAnalyzer
 from app.analyzers import graficar_paisaje_emocional
+from app.analyzers import analyze_emotional_diversity
 
 def main_flow(access_token):
   # Instanciamos las clases
@@ -31,13 +32,14 @@ def main_flow(access_token):
   valence_arousal_result = valence_arousal_analyzer.process_songs(songs_with_audio_features, songs_lyrics_emotional_inference) 
 
   # (2) Dudoso
-
+  emotional_diversity_result = analyze_emotional_diversity(valence_arousal_result)
 
   # (3) Representación artística de las emociones.
   grafico_descripcion = graficar_paisaje_emocional(avg_songs_audio_feautre, avg_songs_lyrics)
 
   return {
     "valence_arousal_analysis": valence_arousal_result,
+    "graphic_diversity_analysis": emotional_diversity_result,
     "graphic_description": grafico_descripcion,
   }
 

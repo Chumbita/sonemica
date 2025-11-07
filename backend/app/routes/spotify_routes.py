@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from fastapi.responses import RedirectResponse
 from app.services import SpotifyService
 
 spotify_router = APIRouter()
@@ -15,12 +16,14 @@ async def get_spotify_auth_url():
 
 @spotify_router.get("/callback")
 async def get_spotify_code(code: str):
-    """
-    Endpoint que recibe 'code' que envía Spotify tras la autorización del usuario.
-    """
-
     token_data = spotify_service.get_token_from_code(code)
-    return token_data
+    access_token = token_data.get("access_token")
+    refresh_token = token_data.get("refresh_token")
+    expires_in = token_data.get("expires_in")
+    
+    # Redirigir al frontend con todos los datos necesarios
+    redirect_url = f"http://localhost:5173/callback?access_token={access_token}&refresh_token={refresh_token}&expires_in={expires_in}"
+    return RedirectResponse(url=redirect_url)
 
 @spotify_router.get("/refresh_token")
 async def refresh_access_token(refresh_token: str):
